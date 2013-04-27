@@ -13,7 +13,7 @@ void printArray(int numbers[], int array_size) {
 
 //Bubble sort algorithm
 void bubbleSort(int numbers[], int array_size) {
-  int i = 0;
+  int i = 0; // bla
   int j = 0;
   int temp = 0;
  
