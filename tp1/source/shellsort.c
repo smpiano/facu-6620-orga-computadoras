@@ -51,7 +51,21 @@ void swap(char **p, char **q) {
 }
 
 void shellSort(char ** words, int arraysize) {
-  // pendiente de hacer
+  int i = 0;
+  int j = 0;
+  int m = 0;
+
+  for (m = arraysize/2; m > 0; m/=2) {
+    for (j = m; j< arraysize; j++) {
+      for (i = j - m; i >= 0; i -= m) {
+        if(strcmp(words[i + m], words[i]) >= 0)
+          break;
+        else {
+          swap(&words[i + m], &words[i]);
+        }
+      }
+    }
+  }
 }
 
 //main for shellsort

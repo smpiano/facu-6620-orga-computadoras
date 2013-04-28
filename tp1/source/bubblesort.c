@@ -50,7 +50,7 @@ void bubbleSort(char ** words, int arraysize) {
 
  for(i = 0; i < arraysize; ++i)
     for(j = i + 1; j < arraysize; ++j)
-      if(strcmp(words[i], words[j]) > 0)
+      if(strcmp(words[i], words[j]) >= 0)
         swap(&words[i], &words[j]);
 }
 
