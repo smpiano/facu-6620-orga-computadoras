@@ -16,7 +16,7 @@ void printStringsArray(char ** words, int arraysize) {
   printf("Array = [");
   int i = 0;
   for (i = 0; i < arraysize; i++) {
-    printf("%s,", words[i]);
+    printf("%s, ", words[i]);
   }
   printf("]\n");
 }
@@ -71,10 +71,11 @@ void shellSort(char ** words, int arraysize) {
 //main for shellsort
 int main(int argc, char **argv) {
 
-  char *words[] = {"hola","chau","and","zero","void","HOLA","donde","kilo","kilometro","kil","kill"};
-  printStringsArray(words,11);
-  shellSort(words, 11);
-  printStringsArray(words,11);
+  char *words[] = {"hola","chau","and","zero","void","HOLA","donde","kilo","kilometro","kil","kill","10","2","1","a","á","Á","áá","ú","u","blabla"};
+  printStringsArray(words,20);
+  shellSort(words, 20);
+  printStringsArray(words,20);
+
 
   int nro[11] = {123,46,78,0,1,2,3,7,567,89,10};
   printArrayInt(nro, 11);
