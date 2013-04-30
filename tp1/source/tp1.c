@@ -52,9 +52,9 @@ int main(int argc, char** argv) {
 
   /* Ordenamos los datos por alguno de los algoritmos */
   if (args.bubblesort) {
-    bubblesort(data.table, data.size - 1);
+    bubblesort(data.table, data.size);
   } else {
-    shellsort(data.table, data.size - 1);
+    shellsort(data.table, data.size);
   }
 
   /* Muestra los datos por pantalla */
