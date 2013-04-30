@@ -47,11 +47,13 @@ void swap(char **p, char **q) {
 }
 
 void bubblesort(char** words, unsigned int arraysize) {
- int i = 0;
- int j = 0;
- printStringsArray(words, arraysize);
- for(i = 0; i <= arraysize; ++i)
-    for(j = i + 1; j <= arraysize; ++j)
+
+  printStringsArray(words, arraysize);
+
+  int i = 0;
+  int j = 0;
+  for(i = 0; i < arraysize; ++i)
+    for(j = i + 1; j < arraysize; ++j)
       if(strcasecmp(words[i], words[j]) >= 0)
         swap(&words[i], &words[j]);
 }
