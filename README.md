@@ -8,7 +8,7 @@ cursada de la materia (66.20) Organización de Computadoras en la FIUBA año 201
 Cada subcarpeta del repositorio está el desarrollo de cada uno de los tres
 trabajos prácticos obligatorios para firmar la cursada de la materia:
 
-* TP0: 
-* TP1: 
-* TP2: 
+* TP1:  Conjunto de Instrucciones MIPS
+        Familiarizarse con la programación en assembler y con la ABI
+* TP2:  Aún no entregado.
 
