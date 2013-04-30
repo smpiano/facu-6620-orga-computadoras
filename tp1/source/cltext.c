@@ -8,7 +8,8 @@ void cl_text_help() {
   puts("tp1 [OPTIONS] [FILE]");
   puts("-h, --help        display this help and exit");
   puts("-v, --version     display version information and exit");
-  puts("-c                use the C implementation of the sorting algorithm");
+  puts("-b, --bubble      use the implementation of the bubble sorting algorithm");
+  puts("-s, --sel         use the implementation of the shell sorting algorithm");
 }
 
 /*

@@ -16,9 +16,14 @@ struct cl_args_t {
   int version;
 
   /*
-   * 1 si se quiere utilizar la version "rapida" implementada en assembly
+   * 1 si se quiere utilizar el ordenamiento por burbuja, 0 en caso contrario.
    */
-  int useAssemblyImplementation;
+  int bubblesort;
+
+  /*
+   * 1 si se quiere utilizar el ordenamiento shellsort, 0 en caso contrario.
+   */
+  int shellsort;
 
   /*
    * Nombre del archivo a ordenar, si se ingreso alguno. 0 en caso contrario.
