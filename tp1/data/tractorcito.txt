@@ -1,1 +1,1 @@
-echo El tractorcito que silbo y bufo
+El tractorcito que silbo y bufo

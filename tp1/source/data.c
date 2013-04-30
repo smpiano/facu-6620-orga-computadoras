@@ -53,15 +53,15 @@ void data_shrink(struct data_t* data) {
 }
 
 /**
- * Indica si el caracter ingresado es alfanumerico
+ * Indica si el caracter es un caracter alfanumerico
  */
-int isAlphanumeric(int raw_char){
-  if ((raw_char>=48 && raw_char<=57) ||
-      (raw_char>=65 && raw_char<=90) ||
-      (raw_char>=97 && raw_char<=122)) {
-    return 0;
+int isAlphanumeric(int raw_char) {
+  if ((raw_char >= 48 && raw_char <= 57) ||
+      (raw_char >= 65 && raw_char <= 90) ||
+      (raw_char >= 97 && raw_char <= 122)) {
+    return 1;
   }
-  return 1;
+  return 0;
 }
 
 /*
