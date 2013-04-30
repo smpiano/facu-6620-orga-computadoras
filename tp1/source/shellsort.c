@@ -59,7 +59,7 @@ void shellsort(char** words, unsigned int arraysize) {
   for (m = arraysize/2; m > 0; m/=2) {
     for (j = m; j< arraysize; j++) {
       for (i = j - m; i >= 0; i -= m) {
-        if(strcmp(words[i + m], words[i]) >= 0)
+        if(strcasecmp(words[i + m], words[i]) >= 0)
           break;
         else {
           swap1(&words[i + m], &words[i]);

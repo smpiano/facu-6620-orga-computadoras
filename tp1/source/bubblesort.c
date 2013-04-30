@@ -51,7 +51,7 @@ void bubblesort(char** words, unsigned int arraysize) {
  printStringsArray(words, arraysize);
  for(i = 0; i < arraysize; ++i)
     for(j = i + 1; j < arraysize; ++j)
-      if(strcmp(words[i], words[j]) >= 0)
+      if(strcasecmp(words[i], words[j]) >= 0)
         swap(&words[i], &words[j]);
 }
 
