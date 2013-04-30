@@ -16,8 +16,8 @@
 void printStringsArray(char ** words, unsigned int arraysize) {
   printf("Array = [");
   int i = 0;
-  for (i = 0; i < arraysize; i++) {
-    printf("%s, ", words[i],words[i][0],words[i][0]);
+  for (i = 0; i <= arraysize; i++) {
+    printf("%s, ", words[i]);
   }
   printf("]\n");
 }
