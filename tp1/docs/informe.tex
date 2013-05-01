@@ -129,10 +129,10 @@ otros.
 \section{Implementación}
 
 El sistema que resuelve el problema planteado en el enunciado (disponible en el
-anexo \ref{sec:enunciado}) fue implementado mayoritariamente en C, reutilizando
-el código desarrollado en el Trabajo Práctico 0 de esta materia. La diferencia
-fundamental radica en la implementación de las rutinas de ordenamiento a través
-del algoritmo \textit{stoogesort} directamente en assembly. El código fuente de
+anexo \ref{sec:enunciado}) fue implementado mayoritariamente en C, y parte en 
+lenguaje MIPS como lo indicaba el enunciuado. La diferencia fundamental radica 
+en la implementación de las rutinas de ordenamiento a través del algoritmo 
+\textit{shellsort} directamente en assembly. El código fuente de
 la solución está disponible en el anexo \ref{sec:source}; por cuestiones de
 espacio y prolijidad sólo se incluyen los archivos relacionados con la
 implementación en assembly de la solución desarrollada.
@@ -145,7 +145,7 @@ implementados para eliminar algunas de las instrucciones de salto
 incondicional, o se podrían utilizar de mejor manera los registros salvados
 (s0-s8) para eliminar la necesidad de restaurar desde el stack algunos de los
 registros en uso (particularmente a0, a1 y a2 en la implementación de
-\textit{stooge\_sort\_s}). Sin embargo, dado que la solución que se presenta
+\textit{shell\_sort\_s}). Sin embargo, dado que la solución que se presenta
 contiene el \(40\%\) de las instrucciones del equivalente implementado en C
 compilado sin optimizaciones, a los efectos del trabajo práctico consideramos
 suficientemente óptima la implementación propuesta.
@@ -154,17 +154,17 @@ A continuación enumeraremos algunas consideraciones de diseño tomadas al
 implementar cada una de las funciones involucradas en el algoritmo de
 ordenamiento.
 
-\subsection{stooge\_sort\_s}
+\subsection{shell\_sort\_s}
 
 Esta función implementa el ordenamiento de una tabla de strings a través de
-\textit{stoogesort}. El método de ordenamiento fue implementado en su forma más
+\textit{shellsort}. El método de ordenamiento fue implementado en su forma más
 sencilla a través de un algoritmo recursivo. El stack frame típico de la
-función se describe a continuación en la figura \ref{fig:stackstooge}.
+función se describe a continuación en la figura \ref{fig:stackshell}.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{docs/stack_stooge_sort_s.png}
-  \caption{Diagrama de stack para la función stooge\_sort\_s} \label{fig:stackstooge}
+  \caption{Diagrama de stack para la función shell\_sort\_s} \label{fig:stackshell}
 \end{figure}
 
 \FloatBarrier
@@ -234,8 +234,8 @@ gcc -c -o build/obj/data.o source/data.c -I./source -Wall
 gcc -c -o build/obj/clargs.o source/clargs.c -I./source -Wall
 gcc -c -o build/obj/cltext.o source/cltext.c -I./source -Wall
 gcc -c -o build/obj/tp1.o source/tp1.c -I./source -Wall
-gcc -c -o build/obj/stoogec.o source/stooge.c -I./source -Wall
-gcc -c -o build/obj/stoogeasm.o source/stooge.S -I./source -WalL
+gcc -c -o build/obj/stoogec.o source/shellsort.c -I./source -Wall
+gcc -c -o build/obj/stoogeasm.o source/shellsort.S -I./source -WalL
 \end{lstlisting}
 
 De este listado, cada una de las invocaciones obedece a la siguiente estructura
@@ -282,23 +282,14 @@ El análisis de tiempos de ejecución se focalizará en comparar la performance 
 la implementación en assembly descripta anteriormente contra diferentes
 versiones de esencialmente el mismo sistema.
 
-Primero se comparará el sistema contra la implementación realizada en el
-Trabajo Práctico 0 del mismo algoritmo pero en C. Por un lado, al compilar esta
-solución sin ninguna optimización del compilador se espera obtener ganancias de
-performance apreciables, debidas mayormente al mejor manejo de los accesos a
-memoria logrados por el ejecutable desarrollado en assembly.
-
-Posteriormente se comparará nuestra implementación contra el mismo desarrollo
-en C, pero esta vez utilizando todas las optimizaciones disponibles por el
+Primero se comparará el desempeño de los algoritmos escritos en C. utilizando todas las optimizaciones disponibles por el
 compilador. Se espera nuevamente encontrar algunas mejoras, aunque pequeñas,
 con respecto a lo que puede entregar el compilador.
 
-Finalmente se comparará el sistema contra la implementación realizada en el
-Trabajo Práctico 0 utilizando \textit{quicksort}. Se compilará el ejecutable
-con todas las optimizaciones posibles. Se espera, de acuerdo a las
-características del algoritmo, que esta nueva implementación sea mucho más
-performante que la nuestra; para más detalles puede consultarse el trabajo
-práctico citado.
+Luego se comparará el algoritmo escrito en C contra el mismo en lenguaje ensabmblador.
+Por un lado, al compilar esta solución sin ninguna optimización del compilador 
+se espera obtener ganancias de performance apreciables, debidas mayormente al 
+mejor manejo de los accesos a memoria logrados por el ejecutable desarrollado en assembly.
 
 \subsection{Experimentos}
 
@@ -312,11 +303,11 @@ se detallan los resultados obtenidos.
 \begin{tabular}{ | l | r | }
   \hline
   Ejecutable          & Tiempo de ejecución (s) \\ \hline
-  Stoogesort assembly & \(4.230\) \\
-  Stoogesort C O0     & \(9.960\) \\
-  Stoogesort C O3     & \(4.867\) \\
-  Quicksort C O0      & \(0.143\) \\
-  Quicksort C O3      & \(0.073\) \\
+  Shellsort assembly & \(4.230\) \\
+  Shellsort C O0     & \(9.960\) \\
+  Shellesort C O3     & \(4.867\) \\
+  Bubblesort C O0      & \(0.143\) \\
+  Bubblesort C O3      & \(0.073\) \\
   \hline
 \end{tabular}
 \caption{Medición de tiempos de ejecución para cada experimento}
