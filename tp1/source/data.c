@@ -73,6 +73,7 @@ int accumulate_lines(struct data_t* data, FILE* stream, struct buffer_t* buffer)
   char actual_char;
   char* new_line;
   int result;
+  int BF;
 
   LOG_DATA_DEBUG("Accumulating lines");
   for (raw_char = fgetc(stream); !feof(stream) || buffer_pending(buffer); raw_char = fgetc(stream)) {
@@ -81,6 +82,7 @@ int accumulate_lines(struct data_t* data, FILE* stream, struct buffer_t* buffer)
     /* Check if we have a complete line to push into the data table */
     if ((!feof(stream) && !isAlphanumeric(raw_char)) || (feof(stream) && buffer_pending(buffer))) {
       /* Push the new line to the data table */
+      BF = buffer->current;
       new_line = buffer_reset(buffer);
       if (!new_line) {
         LOG_DATA_DEBUG("Unable to reset buffer in accumulate_lines");
@@ -88,7 +90,10 @@ int accumulate_lines(struct data_t* data, FILE* stream, struct buffer_t* buffer)
         return 0;
       }
 
-      result = data_pushline(data, new_line);
+      if (BF > 0) {
+        result = data_pushline(data, new_line);
+      }
+      
       if (!result) {
         LOG_DATA_DEBUG("Unable to push new line in accumulate_lines");
         LOG_ERROR("Unable to push new line in data buffer");
@@ -96,7 +101,6 @@ int accumulate_lines(struct data_t* data, FILE* stream, struct buffer_t* buffer)
       }
       LOG_DATA_DEBUG("Pushed line to data buffer");
     } else {
-
       /* Another char was read from the stream, push it to the buffer */
       result = buffer_push(buffer, actual_char);
       if (!result) {
