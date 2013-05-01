@@ -293,10 +293,38 @@ mejor manejo de los accesos a memoria logrados por el ejecutable desarrollado en
 
 \subsection{Experimentos}
 
-Se generó un archivo de 32\(Kb\) ordenado al azar constituido por 220 líneas de
-texto. El mismo se utilizó como entrada para cada uno de los ejecutables
-descriptos en la sección \ref{sec:tiempos}. En el cuadro \ref{tab:resultados}
-se detallan los resultados obtenidos.
+Se realizaron pruebas utilizando los archivos provistos por la cátedra sobre un entorno de ubuntu actual y sobre el emulador GXemul.
+Obtuvimos los siguientes resultados:
+
+Ubuntu:
+
+**** bubblesort **** 
+alice 0m 13.107s
+beowulf 0m 20.749s
+cyclopedia 3m 27.744s
+elquijote 60m 32.782s
+
+
+**** shellsort **** 
+alice 0m 0.422s
+beowulf 0m 0.537s
+cyclopedia 0m 1.920s
+elquijote 0m 5.675s
+
+GXemul:
+
+**** bubblesort **** 
+alice 15m 17.180s
+beowulf 27m 11.102s
+cyclopedia [.infinito.]
+elquijote [.infinito.]
+
+
+**** shellsort **** 
+alice 0m 7.281s
+beowulf 0m 9.500s
+cyclopedia 0m 29.234s
+elquijote 2m 8.613s
 
 \begin{table}[h!t]
 \centering
