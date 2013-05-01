@@ -54,7 +54,11 @@ int main(int argc, char** argv) {
   if (args.bubblesort) {
     bubblesort(data.table, data.size);
   } else {
-    shellsort(data.table, data.size);
+    if (args.mips) {
+      shellsort_s(data.table, data.size);
+    } else {
+      shellsort(data.table, data.size);
+    }
   }
 
   /* Muestra los datos por pantalla */

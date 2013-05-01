@@ -10,6 +10,7 @@ void cl_text_help() {
   puts("-v, --version     display version information and exit");
   puts("-b, --bubble      use the implementation of the bubble sorting algorithm");
   puts("-s, --sel         use the implementation of the shell sorting algorithm");
+  puts("-m, --mips        use the assembly implementation of the sorting algorithm");
 }
 
 /*

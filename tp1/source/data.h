@@ -55,4 +55,9 @@ void data_display(struct data_t* data);
  */
 void data_cleanup(struct data_t* data);
 
+/**
+ * Intercambia el contenido entre dos punteros.
+ */
+void data_swaper(char** data1, char** data2);
+
 #endif

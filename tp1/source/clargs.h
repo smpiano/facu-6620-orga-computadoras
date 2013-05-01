@@ -26,6 +26,12 @@ struct cl_args_t {
   int shellsort;
 
   /*
+   * 1 si se quiere utilizar el ordenamiento shellsort en mips, 0 en caso contrario.
+   * 0 es el default.
+   */
+  int mips;
+
+  /*
    * Nombre del archivo a ordenar, si se ingreso alguno. 0 en caso contrario.
    */
   char** files;

@@ -196,3 +196,12 @@ void data_cleanup(struct data_t* data) {
   free(data->table);
 }
 
+/**
+ * Ver documentacion en el header
+ */
+void data_swaper(char** data1, char** data2) {
+  char* temp;
+  temp = *data1;
+  *data1 = *data2;
+  *data2 = temp;
+}
