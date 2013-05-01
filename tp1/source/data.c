@@ -180,7 +180,8 @@ int data_read(struct data_t* data, struct cl_args_t* args) {
 void data_display(struct data_t* data) {
   int i;
   for (i = 0; i < data->size; i++) {
-    puts(data->table[i]);
+    fputs(data->table[i], stdout);
+    fputs(" ", stdout);
   }
 }
 
