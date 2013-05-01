@@ -52,9 +52,6 @@ void swap1(char **p, char **q) {
 }
 
 void shellsort(char** words, unsigned int arraysize) {
-  
-  printStringsArray(words, arraysize);
-
   int i = 0;
   int j = 0;
   int m = 0;

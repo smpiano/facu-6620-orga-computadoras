@@ -47,9 +47,6 @@ void swap(char **p, char **q) {
 }
 
 void bubblesort(char** words, unsigned int arraysize) {
-
-  printStringsArray(words, arraysize);
-
   int i = 0;
   int j = 0;
   for(i = 0; i < arraysize; ++i)
