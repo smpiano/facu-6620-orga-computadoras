@@ -4,7 +4,7 @@
 % Paquetes utilizados
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Gráficos complejos
+% Graficos complejos
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -17,40 +17,40 @@
 \DeclareUnicodeCharacter{B0}{\textdegree}
 \usepackage[spanish]{babel}
 
-% Código fuente embebido
+% Codigo fuente embebido
 \usepackage{listings}
 
-% PDFs embebidos para el apéndice
+% PDFs embebidos para el apendice
 \usepackage{pdfpages}
 
-% Matemáticos
+% Matematicos
 \usepackage{amssymb,amsmath}
 
 % Tablas complejas
 \usepackage{multirow}
 
-% Formato de párrafo
+% Formato de parrafo
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Título
+% Titulo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Título principal del documento.
-\title{\textbf{Trabajo Práctico 1: Conjunto de Instrucciones MIPS}}
+% Titulo principal del documento.
+\title{\textbf{Trabajo Practico 1: Conjunto de Instrucciones MIPS}}
 
-% Información sobre los autores.
+% Informacion sobre los autores.
 \author{\\
   Guido Laghi, \textit{P. 82.449}                                  \\
   \texttt{guido321@gmail.com}                                      \\ [2.5ex]
-  Sebastián L. Pérez, \textit{P. 84.379}                           \\
+  Sebastian L. Perez, \textit{P. 84.379}                           \\
   \texttt{sebastian.leo.perez@gmail.com}                           \\ [2.5ex]
-  Sergio Matías Piano, \textit{P. 85.191}                          \\
+  Sergio Matias Piano, \textit{P. 85.191}                          \\
   \texttt{smpiano@gmail.com}                                       \\ [2.5ex]
                                                                    \\
   \normalsize{1er. Cuatrimestre de 2013}                           \\
-  \normalsize{66.20 Organización de Computadoras}                  \\
-  \normalsize{Facultad de Ingeniería, Universidad de Buenos Aires} \\
+  \normalsize{66.20 Organizacion de Computadoras}                  \\
+  \normalsize{Facultad de Ingenieria, Universidad de Buenos Aires} \\
 }
 \date{}
 
@@ -68,11 +68,11 @@
 
 \begin{abstract}
 
-  Este informe sumariza el desarrollo del trabajo práctico 1 de la materia
-  Organización de Computadoras (66.20) dictada en el primer cuatrimestre de
-  2013 en la Facultad de Ingeniería de la Universidad de Buenos Aires. El mismo
-  consiste en la construcción de un sistema minimalista de ordenamiento de
-  archivos y el análisis de performance y perfilado del mismo.
+  Este informe sumariza el desarrollo del trabajo practico 1 de la materia
+  Organizacion de Computadoras (66.20) dictada en el primer cuatrimestre de
+  2013 en la Facultad de Ingenieria de la Universidad de Buenos Aires. El mismo
+  consiste en la construccion de un sistema minimalista de ordenamiento de
+  archivos y el analisis de performance y perfilado del mismo.
 
 \end{abstract}
 
@@ -90,93 +90,93 @@
 % ----------------------------------------------------------------------
 \part{Desarrollo}
 
-\section{Introducción}
+\section{Introduccion}
 
-El proceso de compilación de un programa codificado en C consiste en un
-pipeline que genera finalmente código objeto para una arquitectura objetivo.
-Este pipeline analiza y traduce el código a diferentes representaciones de los
-algoritmos contenidos en él, de manera de terminar generando código objeto que
-finalmente se linkea en un ejecutable válido para la arquitectura.
+El proceso de compilacion de un programa codificado en C consiste en un
+pipeline que genera finalmente codigo objeto para una arquitectura objetivo.
+Este pipeline analiza y traduce el codigo a diferentes representaciones de los
+algoritmos contenidos en el, de manera de terminar generando codigo objeto que
+finalmente se linkea en un ejecutable valido para la arquitectura.
 
 Debido a que el lenguaje C es un lenguaje de alto nivel, varios de los
 conceptos propios de este lenguaje deben ser mapeados a diferentes estrategias
-que pueden ser ejecutadas en el código objeto, que no es más que el conjunto de
+que pueden ser ejecutadas en el codigo objeto, que no es mas que el conjunto de
 instrucciones que la arquitectura objetivo provee. Estos mapeos muchas veces
 pueden implementarse de diferentes maneras, cada una con sus ventajas y
 desventajas, y si bien el compilador realiza una muy buena tarea en determinar
 la mejor manera en la que traducir estos conceptos en instrucciones de bajo
-nivel, los algoritmos utilizados no garantizan que la traducción sea de manera
-de generar el código objeto más eficiente y compacto que se podría tener.
+nivel, los algoritmos utilizados no garantizan que la traduccion sea de manera
+de generar el codigo objeto mas eficiente y compacto que se podria tener.
 
 La alternativa que se propone explorar en el presente trabajo es la
-implementación directa en assembly de las rutinas del sistema que se está
-construyendo. Esta alternativa tiene una característica fundamental: al tener
+implementacion directa en assembly de las rutinas del sistema que se esta
+construyendo. Esta alternativa tiene una caracteristica fundamental: al tener
 acceso al conjunto de instrucciones que ejecuta la arquitectura potencialmente
-se puede desarrollar una solución óptima, minimizando el acceso a memoria, la
+se puede desarrollar una solucion optima, minimizando el acceso a memoria, la
 cantidad de instrucciones a ejecutar, etc.
 
-Por otro lado, la implementación en assembly de un sistema no trivial es una
+Por otro lado, la implementacion en assembly de un sistema no trivial es una
 tarea complicada. La dificultad principal radica en que es tarea del
 programador implementar y controlar muchos de los mecanismos de bajo nivel que
-constituyen el \textit{cómo} de la solución, en vez de concentrarse en el
-\textit{qué}. Algunos ejemplos son el manejo del stack, la implementación de
+constituyen el \textit{como} de la solucion, en vez de concentrarse en el
+\textit{que}. Algunos ejemplos son el manejo del stack, la implementacion de
 convenciones de llamadas de subrutinas, el uso de registros compartidos, entre
 otros.
 
-\section{Implementación}
+\section{Implementacion}
 
 El sistema que resuelve el problema planteado en el enunciado (disponible en el
 anexo \ref{sec:enunciado}) fue implementado mayoritariamente en C, y parte en 
 lenguaje MIPS como lo indicaba el enunciado. La diferencia fundamental radica 
-en la implementación de las rutinas de ordenamiento a través del algoritmo 
-\textit{shellsort} directamente en assembly. El código fuente de
-la solución está disponible en el anexo \ref{sec:source}; por cuestiones de
-espacio y prolijidad sólo se incluyen los archivos relacionados con la
-implementación en assembly de la solución desarrollada.
+en la implementacion de las rutinas de ordenamiento a traves del algoritmo 
+\textit{shellsort} directamente en assembly. El codigo fuente de
+la solucion esta disponible en el anexo \ref{sec:source}; por cuestiones de
+espacio y prolijidad solo se incluyen los archivos relacionados con la
+implementacion en assembly de la solucion desarrollada.
 
-Cabe destacar que la solución en assembly definitivamente no es la solución
-óptima. Existen algunas mejoras posibles para disminuir la cantidad de
-instrucciones a ejecutar o los accesos a memoria: por ejemplo, se podrían
+Cabe destacar que la solucion en assembly definitivamente no es la solucion
+optima. Existen algunas mejoras posibles para disminuir la cantidad de
+instrucciones a ejecutar o los accesos a memoria: por ejemplo, se podrian
 reordenar las instrucciones de algunos de los bloques de los procedimientos
 implementados para eliminar algunas de las instrucciones de salto
-incondicional, o se podrían utilizar de mejor manera los registros salvados
+incondicional, o se podrian utilizar de mejor manera los registros salvados
 (s0-s8) para eliminar la necesidad de restaurar desde el stack algunos de los
-registros en uso (particularmente a0, a1 y a2 en la implementación de
-\textit{shell\_sort\_s}). Sin embargo, dado que la solución que se presenta
+registros en uso (particularmente a0, a1 y a2 en la implementacion de
+\textit{shell\_sort\_s}). Sin embargo, dado que la solucion que se presenta
 contiene el \(40\%\) de las instrucciones del equivalente implementado en C
-compilado sin optimizaciones, a los efectos del trabajo práctico consideramos
-suficientemente óptima la implementación propuesta.
+compilado sin optimizaciones, a los efectos del trabajo practico consideramos
+suficientemente optima la implementacion propuesta.
 
-A continuación enumeraremos algunas consideraciones de diseño tomadas al
+A continuacion enumeraremos algunas consideraciones de diseño tomadas al
 implementar cada una de las funciones involucradas en el algoritmo de
 ordenamiento.
 
 \subsection{shell\_sort\_s}
 
-Esta función implementa el ordenamiento de una tabla de strings a través de
-\textit{shellsort}. El método de ordenamiento fue implementado en su forma más
-sencilla a través de un algoritmo recursivo. El stack frame típico de la
-función se describe en la imagen adjunta al final del informe.
+Esta funcion implementa el ordenamiento de una tabla de strings a traves de
+\textit{shellsort}. El metodo de ordenamiento fue implementado en su forma mas
+sencilla a traves de un algoritmo recursivo. El stack frame tipico de la
+funcion se describe en la imagen adjunta al final del informe.
 
 \FloatBarrier
 
-Se reservan 32 bytes para el área de SRA: 4 bytes para salvar el registro ra en llamadas a otras funciones (ya que no es leaf), 4 bytes para salvar el registro gp, 4 bytes para preservar el registro fp y finalmente 20 bytes para el uso interno de los registros S0, S1, S2, S3, S4 que se utilizan para cálculos de la función.
+Se reservan 32 bytes para el area de SRA: 4 bytes para salvar el registro ra en llamadas a otras funciones (ya que no es leaf), 4 bytes para salvar el registro gp, 4 bytes para preservar el registro fp y finalmente 20 bytes para el uso interno de los registros S0, S1, S2, S3, S4 que se utilizan para calculos de la funcion.
 
-Por otro lado, dado que las funciones invocadas desde esta no poseen nunca más
+Por otro lado, dado que las funciones invocadas desde esta no poseen nunca mas
 de dos argumentos, se reservan \(4 x 4\) bytes en concepto de ABA (respetando la ABI) para ser
 
 utilizados por las funciones llamadas.
 
-Esta función invoca a strcasecmp como a data\_swaper.
+Esta funcion invoca a strcasecmp como a data\_swaper.
 
 \FloatBarrier
 
-\section{Compilación}
+\section{Compilacion}
 
-Se instrumentó un \textit{makefile} para ejecutar las instrucciones adecuadas
-de compilación para los distintos escenarios requeridos. La
+Se instrumento un \textit{makefile} para ejecutar las instrucciones adecuadas
+de compilacion para los distintos escenarios requeridos. La
 tarea \textit{make} compila individualmente cada uno de los archivos fuente de
-extensión \textit{c} y \textit{S} a través del ejecutable \textit{gcc}.
+extension \textit{c} y \textit{S} a traves del ejecutable \textit{gcc}.
 Los comandos utilizados para compilar cada uno de estos archivos fuente son los
 siguientes:
 
@@ -195,11 +195,11 @@ de argumentos:
 
 \begin{description}
 
-  \item[-c] Compila o ensambla el código fuente pero no corre el linker.  Por
+  \item[-c] Compila o ensambla el codigo fuente pero no corre el linker.  Por
     lo tanto la salida corresponde a un archivo objeto por cada archivo fuente.
 
-  \item[-o] Especifica cual será el archivo de salida sea éste un archivo
-    objeto, ejecutable, ensamblado o código preprocesado de C.
+  \item[-o] Especifica cual sera el archivo de salida sea este un archivo
+    objeto, ejecutable, ensamblado o codigo preprocesado de C.
 
   \item[-Wall] Activa todos los mensajes de warning.
 
@@ -208,10 +208,10 @@ de argumentos:
 
 \end{description}
 
-El resultado de la ejecución de estos comandos es que se generan archivos
+El resultado de la ejecucion de estos comandos es que se generan archivos
 objeto para cada fuente, listos para ser linkeados, en el directorio
-\textit{build/obj}. Para realizar este último paso, se invoca nuevamente a
-\textit{gcc} con un último comando:
+\textit{build/obj}. Para realizar este ultimo paso, se invoca nuevamente a
+\textit{gcc} con un ultimo comando:
 
 \begin{lstlisting}
 gcc -o build/tp1 build/obj/buffer.o build/obj/data.o build/obj/clargs.o build/obj/cltext.o build/obj/tp1.o build/obj/bubblesort.o build/obj/shellsort.o -I./source -Wall 
@@ -220,36 +220,36 @@ gcc -o build/tp1 build/obj/buffer.o build/obj/data.o build/obj/clargs.o build/ob
 El comando linkea todos los archivos objeto en un ejecutable final,
 \textit{build/tp1}.
 
-\section{Análisis de tiempos de ejecución}
+\section{Analisis de tiempos de ejecucion}
 
-En las siguientes secciones detallaremos el proceso de análisis de tiempo de
-ejecución realizado para los diferentes casos contemplados.
+En las siguientes secciones detallaremos el proceso de analisis de tiempo de
+ejecucion realizado para los diferentes casos contemplados.
 
-\subsection{Análisis previo}\label{sec:tiempos}
+\subsection{Analisis previo}\label{sec:tiempos}
 
-El análisis de tiempos de ejecución se focalizará en comparar la performance de
-la implementación en assembly descripta anteriormente contra diferentes
+El analisis de tiempos de ejecucion se focalizara en comparar la performance de
+la implementacion en assembly descripta anteriormente contra diferentes
 versiones de esencialmente el mismo sistema.
 
-Primero se comparará el desempeño de los algoritmos escritos en C. utilizando todas las optimizaciones disponibles por el
+Primero se comparara el desempeño de los algoritmos escritos en C. utilizando todas las optimizaciones disponibles por el
 compilador. Se espera nuevamente encontrar algunas mejoras, aunque pequeñas,
 con respecto a lo que puede entregar el compilador.
 
-Luego se comparará el algoritmo escrito en C contra el mismo en lenguaje ensabmblador.
-Por un lado, al compilar esta solución sin ninguna optimización del compilador 
+Luego se comparara el algoritmo escrito en C contra el mismo en lenguaje ensabmblador.
+Por un lado, al compilar esta solucion sin ninguna optimizacion del compilador 
 se espera obtener ganancias de performance apreciables, debidas mayormente al 
 mejor manejo de los accesos a memoria logrados por el ejecutable desarrollado en assembly.
 
 \subsection{Experimentos}
 
-Se realizaron pruebas utilizando los archivos provistos por la cátedra sobre un entorno de ubuntu actual y sobre el emulador GXemul.
+Se realizaron pruebas utilizando los archivos provistos por la catedra sobre un entorno de ubuntu actual y sobre el emulador GXemul.
 Obtuvimos los siguientes resultados:
 
 \begin{table}[h!t]
 \centering
 \begin{tabular}{ | l | r | }
   \hline
-  Archivo          & Tiempo de ejecución \\ \hline
+  Archivo          & Tiempo de ejecucion \\ \hline
   Alice				 & \(13.107s\) \\
   Beowulf     & \(20.749s\) \\
   Cyclopedia     & \(3m 27.744s\) \\
@@ -266,7 +266,7 @@ Obtuvimos los siguientes resultados:
 \centering
 \begin{tabular}{ | l | r | }
   \hline
-  Archivo          & Tiempo de ejecución \\ \hline
+  Archivo          & Tiempo de ejecucion \\ \hline
   Alice				 & \(0.422s\) \\
   Beowulf     & \(0.537s\) \\
   Cyclopedia     & \(1.920s\) \\
@@ -283,7 +283,7 @@ Obtuvimos los siguientes resultados:
 \centering
 \begin{tabular}{ | l | r | }
   \hline
-  Archivo          & Tiempo de ejecución \\ \hline
+  Archivo          & Tiempo de ejecucion \\ \hline
   Alice				 & \(15m 17.180s\) \\
   Beowulf     & \(27m 11.102s\) \\
   Cyclopedia     & \(135m\) \\
@@ -300,7 +300,7 @@ Obtuvimos los siguientes resultados:
 \centering
 \begin{tabular}{ | l | r | }
   \hline
-  Archivo          & Tiempo de ejecución \\ \hline
+  Archivo          & Tiempo de ejecucion \\ \hline
   Alice				 & \(7.281s\) \\
   Beowulf     & \(9.500s\) \\
   Cyclopedia     & \(29.234s\) \\
@@ -313,42 +313,38 @@ Obtuvimos los siguientes resultados:
 
 \FloatBarrier
 
-Se observaron todos los resultados esperados. Se notó una mejoría en los tiempos del código assembly respecto al código C. El análisis gráfico de los datos se puede apreciar adjunto al final de este informe.
+Se observaron todos los resultados esperados. Se noto una mejoria en los tiempos del codigo assembly respecto al codigo C. El analisis grafico de los datos se puede apreciar adjunto al final de este informe.
 
 \section{Conclusiones}
 
-La implementación en assembly del trabajo práctico, a pesar de que los algoritmos son relativamente simples y sencillos de desarrollar, fue
-relativamente complicado. El entorno de desarrollo en la plataforma MIPS agregó complejidad a la hora de implementar, administrar y controlar la infraestructura de los llamados a
-funciones y otros artefactos básicos de integración. Por otro lado, el código
-de ensamblador no provee muchas de las abstracciones básicas que se dan por
-sentado en los lenguajes de alto nivel, como bloques condicionales y conversión
-de tipos, lo que hizo que la implementación del algoritmo sea aún más
+La implementacion en assembly del trabajo practico, a pesar de que los algoritmos son relativamente simples y sencillos de desarrollar, fue
+relativamente complicado. El entorno de desarrollo en la plataforma MIPS agrego complejidad a la hora de implementar, administrar y controlar la infraestructura de los llamados a
+funciones y otros artefactos basicos de integracion. Por otro lado, el codigo
+de ensamblador no provee muchas de las abstracciones basicas que se dan por
+sentado en los lenguajes de alto nivel, como bloques condicionales y conversion
+de tipos, lo que hizo que la implementacion del algoritmo sea aun mas
 dificultoso. La ausencia de mecanismos de seguridad presentes en
-lenguajes compilados, como la comprobación de tipos, prototipos funcionales y
-declarativas en la asignación de nombres a variables incrementó la cantidad
-de bugs con los que desarrollamos, lo que dio a lugar a más trabajo de depuración y testing.
+lenguajes compilados, como la comprobacion de tipos, prototipos funcionales y
+declarativas en la asignacion de nombres a variables incremento la cantidad
+de bugs con los que desarrollamos, lo que dio a lugar a mas trabajo de depuracion y testing.
 
-Analizando el resto de los resultados concluimos que la versión implementada en
+Analizando el resto de los resultados concluimos que la version implementada en
 C con \textit{shellsort}, incluso cuando no se aplicaron optimizaciones de
-compilador, era un orden de magnitud más eficiente que la versión implementada
+compilador, era un orden de magnitud mas eficiente que la version implementada
 en assembly. 
 
-Como conclusión final podemos decir que si bien la implementación de MIPS nos ofrece un mejor rendimiento de los algoritmos desarrollados, su dificil implementación hace que debamos evaluar si deseamos priorizar el rendimiento a costo de tiempo de desarrollo. En caso de necesitar una mejora crucial de rendimiento la mejor solución es la arquitectura MIPS, mientras que si deseamos un desarrollo más sencillo (y por lo tanto más breve) la mejor opción es lenguaje en C.
+Como conclusion final podemos decir que si bien la implementacion de MIPS nos ofrece un mejor rendimiento de los algoritmos desarrollados, su dificil implementacion hace que debamos evaluar si deseamos priorizar el rendimiento a costo de tiempo de desarrollo. En caso de necesitar una mejora crucial de rendimiento la mejor solucion es la arquitectura MIPS, mientras que si deseamos un desarrollo mas sencillo (y por lo tanto mas breve) la mejor opcion es lenguaje en C.
 
 \clearpage
 
-\part{Apéndice}
+\part{Apendice}
 \appendix
 
 \section{Enunciado original}\label{sec:enunciado}
 \includepdf[pages={-}]{docs/enunciado.pdf}
 
 \clearpage
-\section{README del material digital}\label{sec:readme}
-\includepdf[pages={-}]{build/doc/README.pdf}
-
-\clearpage
-\section{Código fuente}\label{sec:source}
+\section{Codigo fuente}\label{sec:source}
 \clearpage
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \lstset{

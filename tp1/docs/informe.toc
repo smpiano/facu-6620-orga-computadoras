@@ -1,14 +1,13 @@
 \select@language {spanish}
 \contentsline {part}{I\hspace {1em}Desarrollo}{3}
-\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}
-\contentsline {section}{\numberline {2}Implementaci\IeC {\'o}n}{3}
+\contentsline {section}{\numberline {1}Introduccion}{3}
+\contentsline {section}{\numberline {2}Implementacion}{3}
 \contentsline {subsection}{\numberline {2.1}shell\_sort\_s}{4}
-\contentsline {section}{\numberline {3}Compilaci\IeC {\'o}n}{4}
-\contentsline {section}{\numberline {4}An\IeC {\'a}lisis de tiempos de ejecuci\IeC {\'o}n}{5}
-\contentsline {subsection}{\numberline {4.1}An\IeC {\'a}lisis previo}{5}
+\contentsline {section}{\numberline {3}Compilacion}{4}
+\contentsline {section}{\numberline {4}Analisis de tiempos de ejecucion}{5}
+\contentsline {subsection}{\numberline {4.1}Analisis previo}{5}
 \contentsline {subsection}{\numberline {4.2}Experimentos}{6}
 \contentsline {section}{\numberline {5}Conclusiones}{7}
-\contentsline {part}{II\hspace {1em}Ap\IeC {\'e}ndice}{8}
+\contentsline {part}{II\hspace {1em}Apendice}{8}
 \contentsline {section}{\numberline {A}Enunciado original}{8}
-\contentsline {section}{\numberline {B}README del material digital}{10}
-\contentsline {section}{\numberline {C}C\IeC {\'o}digo fuente}{12}
+\contentsline {section}{\numberline {B}Codigo fuente}{10}

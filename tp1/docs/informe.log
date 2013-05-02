@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.5.2)  2 MAY 2013 19:09
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.5.2)  2 MAY 2013 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -758,15 +758,7 @@ Package pdfpages Warning: I cannot determine the number of pages of the
 
 [8
 
-] [9]
-
-Package pdfpages Warning: I cannot determine the number of pages of the
-(pdfpages)                included document, while being in DVI mode. You
-(pdfpages)                can use the option `lastpage' to give me a hint.
-
-[10
-
-] [11] [12
+] [9] [10
 
 ] (./informe.aux
 LaTeX Info: Redefining \. on input line 6.
@@ -779,10 +771,10 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  7084 strings out of 495060
  96070 string characters out of 3182054
- 160839 words of memory out of 3000000
+ 160833 words of memory out of 3000000
  10162 multiletter control sequences out of 15000+200000
  20016 words of font info for 52 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,10n,39p,499b,966s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,10n,39p,484b,966s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on informe.dvi (12 pages, 23852 bytes).
+Output written on informe.dvi (10 pages, 23296 bytes).
