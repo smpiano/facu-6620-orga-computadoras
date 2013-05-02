@@ -5,6 +5,7 @@ DEPS = \
        source/data.h \
        source/bubblesort.h \
        source/shellsort.h \
+       source/shellsort.S \
        source/config.h
 
 OBJ = build/obj/buffer.o \
@@ -13,8 +14,8 @@ OBJ = build/obj/buffer.o \
       build/obj/cltext.o \
       build/obj/tp1.o \
       build/obj/bubblesort.o \
-      build/obj/shellsort.o
-#      build/obj/shellsortasm.o \
+      build/obj/shellsort.o \
+      build/obj/shellsortasm.o
 
 VIRTUAL = gxemul-6620-20070927
 
@@ -48,8 +49,8 @@ build/obj/bubblesort.o: source/bubblesort.c $(DEPS)
 build/obj/shellsort.o: source/shellsort.c $(DEPS)
 	$(CC) -c -o $@ source/shellsort.c $(CFLAGS)
 
-#build/obj/shellsortasm.o: source/shellsort.S $(DEPS)
-#	$(CC) -c -o $@ source/shellsort.S $(CFLAGS)
+build/obj/shellsortasm.o: source/shellsort.S $(DEPS)
+	$(CC) -c -o $@ source/shellsort.S $(CFLAGS)
 
 prepare:
 	-mkdir -p build
