@@ -45,16 +45,16 @@ loop_m:
   blez t0, SALIR # si (t0 <= 0) { SALIR }
   sw t0,28(sp) # j = t0
 
-####################
-la a0, text_loopm
-move a1, t0
-jal printf
-lw a1,60(sp)
-lw a0,56(sp)
-lw a1,60(sp)
-lw t1,28(sp)
-lw t2,24(sp)
-####################
+  ####################
+  #la a0, text_loopm
+  #move a1, t0
+  #jal printf
+  #lw a1,60(sp)
+  #lw a0,56(sp)
+  #lw a1,60(sp)
+  #lw t1,28(sp)
+  #lw t2,24(sp)
+  ####################
 
 
 loop_j:
@@ -64,15 +64,15 @@ loop_j:
   subu t2, a1, t1 # t2 = arraysize - j
   blez t2, SALIR_M # si (t2 <= 0) { SALIR_M }
 
-####################
-la a0, text_loopj
-move a1, t1
-jal printf
-lw a0,56(sp)
-lw a1,60(sp)
-lw t1,28(sp)
-lw t2,24(sp)
-####################
+  ####################
+  #la a0, text_loopj
+  #move a1, t1
+  #jal printf
+  #lw a0,56(sp)
+  #lw a1,60(sp)
+  #lw t1,28(sp)
+  #lw t2,24(sp)
+  ####################
 
   lw t0,32(sp)
   subu t2,t1,t0 # i = j - m
@@ -95,14 +95,14 @@ loop_i:
   lw a1, (t3)
   lw a0, (t4) # a0 = words[t4]
 
-  sw a0,(sp)
-  sw a1,4(sp)
+  sw t4,(sp)
+  sw t3,4(sp)
   la jp, strcasecmp
   jal ra, jp
 
   bgez v0, SALIR_J # si (strcasecmp(a0,a1) >= 0) break;
 
-#el tractorcito rojo que silvo y bufo
+#el tractorcito rojo que silbo y bufo
 
 #la a0, text_swap
 #jal printf
@@ -115,36 +115,36 @@ loop_i:
   la jp, data_swaper
   jal ra, jp
 
-####################
-#la a0, text_print
-#lw a1,(sp)
-#lw a2,4(sp)
-#jal printf
-#lw a0,56(sp)
-#lw a1,60(sp)
-#lw t1,28(sp)
-#lw t2,24(sp)
-####################
-####################
-#la a0, text_print
-#move a1, t6
-#jal printf
-#lw a0,56(sp)
-#lw a1,60(sp)
-#lw t1,28(sp)
-#lw t2,24(sp)
-####################
+  ####################
+  #la a0, text_print
+  #lw a1,(sp)
+  #lw a2,4(sp)
+  #jal printf
+  #lw a0,56(sp)
+  #lw a1,60(sp)
+  #lw t1,28(sp)
+  #lw t2,24(sp)
+  ####################
+  ####################
+  #la a0, text_print
+  #move a1, t6
+  #jal printf
+  #lw a0,56(sp)
+  #lw a1,60(sp)
+  #lw t1,28(sp)
+  #lw t2,24(sp)
+  ####################
 
 
-####################
-la a0, text_loopi
-move a1, t2
-jal printf
-lw a0,56(sp)
-lw a1,60(sp)
-lw t1,28(sp)
-lw t2,24(sp)
-####################
+  ####################
+  #la a0, text_loopi
+  #move a1, t2
+  #jal printf
+  #lw a0,56(sp)
+  #lw a1,60(sp)
+  #lw t1,28(sp)
+  #lw t2,24(sp)
+  ####################
 
   lw t0,32(sp) # t0 = m
   subu t2, t2, t0 # i = i - m
@@ -170,7 +170,6 @@ SALIR:
   lw gp,40(sp)
 
   addu sp,sp,56
-  
   jr ra
 
   .end shellsort_s
