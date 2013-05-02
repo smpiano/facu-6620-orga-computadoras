@@ -45,9 +45,8 @@ int cl_args_parse(struct cl_args_t* args, int argc, char** argv) {
       args->bubblesort = 1;
     } else if (!strcmp(argv[i], "-s") || !strcmp(argv[i], "--sel")) {
       args->shellsort = 1;
-      if (!strcmp(argv[i], "-m") || !strcmp(argv[i], "--mips")) {
-        args->mips = 1;
-      }
+    } else if (!strcmp(argv[i], "-m") || !strcmp(argv[i], "--mips")) {
+      args->mips = 1;
     } else if (argv[i][0] != '-') {
       if (!args->file_count) {
         args->files = &argv[i];
