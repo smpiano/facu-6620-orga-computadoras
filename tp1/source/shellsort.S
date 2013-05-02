@@ -8,6 +8,7 @@
   .globl  shellsort_s
 
 shellsort_s: .ent shellsort_s
+  
   .frame sp,56,ra
 
   # setup del global pointer
@@ -16,9 +17,9 @@ shellsort_s: .ent shellsort_s
   .set reorder
 
   # inicio ---
-	subu sp,sp,56 # creamos el stack
+  subu sp,sp,56 # creamos el stack
   .cprestore 40
-	sw ra,48(sp)
+  sw ra,48(sp)
   sw fp,44(sp)
   #sw gp,40(sp) # reemplazada por el cprestore
   move fp,sp
@@ -48,7 +49,6 @@ loop_m:
 la a0, text_loopm
 move a1, t0
 jal printf
-lw a0,56(sp)
 lw a1,60(sp)
 lw a0,56(sp)
 lw a1,60(sp)
@@ -84,21 +84,23 @@ loop_i:
   bltz t2, SALIR_J # i < 0 # si (t2 <= 0) { SALIR_J }
 
   # hghgjhgjhgjh
+  lw a0,56(sp)
+  lw t0,32(sp)
   addu t3,t2,t0 # t3 = i + m
-  sll t4,t3,2
-  addu t4, a0, t4
-  lw t5,(t4) # words[i+m]
+  sll t4,t3,2 # t4 = t3 x 4
+  addu t4, a0, t4 # words[t4]
 
-  sll t4, t2, 2
-  addu t4, a0, t4
-  lw t6, (t4)
+  sll t3, t2, 2 # t3 = t2 x 4
+  addu t3, a0, t3 # words[t3]
+  lw a1, (t3)
+  lw a0, (t4) # a0 = words[t4]
 
-  move a0, t5
-  move a1, t6
+  sw a0,(sp)
+  sw a1,4(sp)
   la jp, strcasecmp
   jal ra, jp
 
-  bgez v0, SALIR_J # break;
+  bgez v0, SALIR_J # si (strcasecmp(a0,a1) >= 0) break;
 
 #el tractorcito rojo que silvo y bufo
 
@@ -108,16 +110,15 @@ loop_i:
 #lw t1,28(sp)
 #lw t2,24(sp)
 
-  #move t0, a0
-  #move t1, a1
-  #lw a0, (t0)
-  #lw a1, (t1)
-  #la jp, data_swaper
-  #jal ra, jp
+  lw a0, (sp)
+  lw a1, 4(sp)
+  la jp, data_swaper
+  jal ra, jp
 
 ####################
 #la a0, text_print
-#move a1, t5
+#lw a1,(sp)
+#lw a2,4(sp)
 #jal printf
 #lw a0,56(sp)
 #lw a1,60(sp)
@@ -169,16 +170,18 @@ SALIR:
   lw gp,40(sp)
 
   addu sp,sp,56
+  
   jr ra
-
 
   .end shellsort_s
   .size shellsort_s, .-shellsort_s
 
- .data
+
+
+  .data
 hello:  .asciz  "VALOR = %d\n"
 text_loopm:  .asciz  "text_loop_m = %d\n"
 text_loopj:  .asciz  "text_loop_j = %d\n"
 text_loopi:  .asciz  "text_loop_i = %d\n"
-text_print:  .asciz  "text_print = %s\n"
+text_print:  .asciz  "text_print = %s %s\n"
 text_swap:  .asciz  "swap\n"
