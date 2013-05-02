@@ -72,10 +72,7 @@
   Organización de Computadoras (66.20) dictada en el primer cuatrimestre de
   2013 en la Facultad de Ingeniería de la Universidad de Buenos Aires. El mismo
   consiste enla construcción de un sistema minimalista de ordenamiento de
-  archivos y el análisis de performance y perfilado del mismo, con foco en la
-  generación de un entorno de infraestructura básica para soportar el
-  desarrollo de estas tareas que será reutilizado en futuros trabajos
-  prácticos.
+  archivos y el análisis de performance y perfilado del mismo.
 
 \end{abstract}
 
@@ -130,7 +127,7 @@ otros.
 
 El sistema que resuelve el problema planteado en el enunciado (disponible en el
 anexo \ref{sec:enunciado}) fue implementado mayoritariamente en C, y parte en 
-lenguaje MIPS como lo indicaba el enunciuado. La diferencia fundamental radica 
+lenguaje MIPS como lo indicaba el enunciado. La diferencia fundamental radica 
 en la implementación de las rutinas de ordenamiento a través del algoritmo 
 \textit{shellsort} directamente en assembly. El código fuente de
 la solución está disponible en el anexo \ref{sec:source}; por cuestiones de
@@ -163,14 +160,14 @@ función se describe a continuación en la figura \ref{fig:stackshell}.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{docs/stack_stooge_sort_s.png}
+  \includegraphics[width=\textwidth]{docs/stack_shell_sort_s.png}
   \caption{Diagrama de stack para la función shell\_sort\_s} \label{fig:stackshell}
 \end{figure}
 
 \FloatBarrier
 
 Se reservan 16 bytes para el área de SRA: 4 bytes para salvar el registro ra en
-llamadas a otras funciones, 4 bytes para salvar el registro gp, 4 bytes para
+llamadas a otras funciones (ya que no es leaf), 4 bytes para salvar el registro gp, 4 bytes para
 preservar el registro s0 utilizado en varios de los cálculos de la función y
 finalmente 4 bytes para el registro fp.
 
@@ -229,13 +226,13 @@ Los comandos utilizados para compilar cada uno de estos archivos fuente son los
 siguientes:
 
 \begin{lstlisting}
-gcc -c -o build/obj/buffer.o source/buffer.c -I./source -Wall
-gcc -c -o build/obj/data.o source/data.c -I./source -Wall
-gcc -c -o build/obj/clargs.o source/clargs.c -I./source -Wall
-gcc -c -o build/obj/cltext.o source/cltext.c -I./source -Wall
-gcc -c -o build/obj/tp1.o source/tp1.c -I./source -Wall
-gcc -c -o build/obj/stoogec.o source/shellsort.c -I./source -Wall
-gcc -c -o build/obj/stoogeasm.o source/shellsort.S -I./source -WalL
+gcc -c -o build/obj/buffer.o source/buffer.c -I./source -Wall 
+gcc -c -o build/obj/data.o source/data.c -I./source -Wall 
+gcc -c -o build/obj/clargs.o source/clargs.c -I./source -Wall 
+gcc -c -o build/obj/cltext.o source/cltext.c -I./source -Wall 
+gcc -c -o build/obj/tp1.o source/tp1.c -I./source -Wall 
+gcc -c -o build/obj/bubblesort.o source/bubblesort.c -I./source -Wall 
+gcc -c -o build/obj/shellsort.o source/shellsort.c -I./source -Wall 
 \end{lstlisting}
 
 De este listado, cada una de las invocaciones obedece a la siguiente estructura
@@ -262,10 +259,7 @@ objeto para cada fuente, listos para ser linkeados, en el directorio
 \textit{gcc} con un último comando:
 
 \begin{lstlisting}
-gcc -o build/tp0 \
-  build/obj/buffer.o build/obj/data.o \
-  build/obj/clargs.o build/obj/cltext.o \
-  build/obj/tp1.o build/obj/stoogec.o build/obj/stoogeasm.o
+gcc -o build/tp1 build/obj/buffer.o build/obj/data.o build/obj/clargs.o build/obj/cltext.o build/obj/tp1.o build/obj/bubblesort.o build/obj/shellsort.o -I./source -Wall 
 \end{lstlisting}
 
 El comando linkea todos los archivos objeto en un ejecutable final,
@@ -296,49 +290,69 @@ mejor manejo de los accesos a memoria logrados por el ejecutable desarrollado en
 Se realizaron pruebas utilizando los archivos provistos por la cátedra sobre un entorno de ubuntu actual y sobre el emulador GXemul.
 Obtuvimos los siguientes resultados:
 
-Ubuntu:
+\begin{table}[h!t]
+\centering
+\begin{tabular}{ | l | r | }
+  \hline
+  Archivo          & Tiempo de ejecución \\ \hline
+  Alice				 & \(13.107s\) \\
+  Beowulf     & \(20.749s\) \\
+  Cyclopedia     & \(3m 27.744s\) \\
+  EL Quijote      & \(60m 32.782s\) \\
+  \hline
+\end{tabular}
+\caption{Tiempos en Ubuntu para BubbleSort}
+\label{tab:resultados}
+\end{table}
 
-**** bubblesort **** 
-alice 0m 13.107s
-beowulf 0m 20.749s
-cyclopedia 3m 27.744s
-elquijote 60m 32.782s
-
-
-**** shellsort **** 
-alice 0m 0.422s
-beowulf 0m 0.537s
-cyclopedia 0m 1.920s
-elquijote 0m 5.675s
-
-GXemul:
-
-**** bubblesort **** 
-alice 15m 17.180s
-beowulf 27m 11.102s
-cyclopedia [.infinito.]
-elquijote [.infinito.]
-
-
-**** shellsort **** 
-alice 0m 7.281s
-beowulf 0m 9.500s
-cyclopedia 0m 29.234s
-elquijote 2m 8.613s
+\FloatBarrier
 
 \begin{table}[h!t]
 \centering
 \begin{tabular}{ | l | r | }
   \hline
-  Ejecutable          & Tiempo de ejecución (s) \\ \hline
-  Shellsort assembly & \(4.230\) \\
-  Shellsort C O0     & \(9.960\) \\
-  Shellesort C O3     & \(4.867\) \\
-  Bubblesort C O0      & \(0.143\) \\
-  Bubblesort C O3      & \(0.073\) \\
+  Archivo          & Tiempo de ejecución \\ \hline
+  Alice				 & \(0.422s\) \\
+  Beowulf     & \(0.537s\) \\
+  Cyclopedia     & \(1.920s\) \\
+  EL Quijote      & \(5.675s\) \\
   \hline
 \end{tabular}
-\caption{Medición de tiempos de ejecución para cada experimento}
+\caption{Tiempos en Ubuntu para ShellSort}
+\label{tab:resultados}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!t]
+\centering
+\begin{tabular}{ | l | r | }
+  \hline
+  Archivo          & Tiempo de ejecución \\ \hline
+  Alice				 & \(15m 17.180s\) \\
+  Beowulf     & \(27m 11.102s\) \\
+  Cyclopedia     & \(135m\) \\
+  EL Quijote      & \(time elapsed\) \\
+  \hline
+\end{tabular}
+\caption{Tiempos en GXemul para BubbleSort}
+\label{tab:resultados}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!t]
+\centering
+\begin{tabular}{ | l | r | }
+  \hline
+  Archivo          & Tiempo de ejecución \\ \hline
+  Alice				 & \(7.281s\) \\
+  Beowulf     & \(9.500s\) \\
+  Cyclopedia     & \(29.234s\) \\
+  EL Quijote      & \(2m 8.613s\) \\
+  \hline
+\end{tabular}
+\caption{Tiempos en GXemul para BubbleSort}
 \label{tab:resultados}
 \end{table}
 
@@ -350,7 +364,7 @@ de C sin optimizaciones de compilador (más del 50\% de ganancia), la
 compilación con todas las optimizaciones activadas se mantuvo relativamente
 cerca de nuestra implementación particular.
 
-Por otro lado, como era de esperarse, la implementación por \textit{quicksort}
+Por otro lado, como era de esperarse, la implementación por \textit{shellsort}
 fue muchísimo más performante que nuestra versión optimizada manualmente,
 tomando menos del 10\% del tiempo de ejecución de nuestra versión incluso en la
 versión compilada sin optimizaciones del compilador.
@@ -375,7 +389,7 @@ y testing.
 
 El costo adicional de implementación fue claro: mientras que la versión en C
 fue diseñada, implementada y testeada en 4 horas de trabajo de uno de los
-integrantes del trabajo práctico, su equivalente en assembly nos llevó a dos
+integrantes del trabajo práctico, su equivalente en assembly nos llevó a los tres
 integrantes varios días de trabajo, particularmente en el testing y depuración
 de errores. Si bien puede atribuirse esto a la falta de experiencia en
 programación a bajo nivel, el resultado sigue siendo que el desarrollo es mucho
@@ -389,7 +403,7 @@ habilitadas está dentro del 10\%. ¿Justifica el enorme costo adicional esa
 ganancia?
 
 Analizando el resto de los resultados concluimos que la versión implementada en
-C con \textit{quicksort}, incluso cuando no se aplicaron optimizaciones de
+C con \textit{shellsort}, incluso cuando no se aplicaron optimizaciones de
 compilador, era un orden de magnitud más eficiente que la versión implementada
 en assembly. Esta versión fue desarrollada, depurada y testeada por un
 integrante en el transcurso de un día, con un costo total de implementación
