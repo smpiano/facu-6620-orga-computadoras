@@ -166,55 +166,19 @@ función se describe a continuación en la figura \ref{fig:stackshell}.
 
 \FloatBarrier
 
-Se reservan 16 bytes para el área de SRA: 4 bytes para salvar el registro ra en
-llamadas a otras funciones (ya que no es leaf), 4 bytes para salvar el registro gp, 4 bytes para
-preservar el registro s0 utilizado en varios de los cálculos de la función y
-finalmente 4 bytes para el registro fp.
+Se reservan 32 bytes para el área de SRA: 4 bytes para salvar el registro ra en llamadas a otras funciones (ya que no es leaf), 4 bytes para salvar el registro gp, 4 bytes para preservar el registro fp y finalmente 20 bytes para el uso interno de los registros S0, S1, S2, S3, S4 que se utilizan para cálculos de la función.
 
 Por otro lado, dado que las funciones invocadas desde esta no poseen nunca más
-de tres argumentos, se reservan \(4 x 4\) bytes en concepto de ABA para ser
+de dos argumentos, se reservan \(4 x 4\) bytes en concepto de ABA (respetando la ABI) para ser
+
 utilizados por las funciones llamadas.
 
-Esta función invoca tanto a \textit{compare\_s} como a \textit{swap\_s}, además
-de las invocaciones recursivas mencionadas anteriormente.
-
-\subsection{compare\_s}
-
-Esta función compara byte a byte dos cadenas de caracteres terminadas en 0
-(siguiendo la convención de C). Devuelve un número negativo si la primer cadena
-es anterior a la segunda, 0 si son iguales o un número positivo si la primer
-cadena es posterior a la segunda. El stack frame típico de la función se
-describe a continuación en la figura \ref{fig:stackcompare}.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{docs/stack_compare_s.png}
-  \caption{Diagrama de stack para la función compare\_s} \label{fig:stackcompare}
-\end{figure}
+Esta función invoca a \textit{strcasecmp} como a \textit{data_swaper}.
 
 \FloatBarrier
 
 Esta función fue implementada como leaf, sin invocar otras funciones
-auxiliares. Se reservan 8 bytes para salvar gp y fp. No es necesario reservar
-espacio adicional para ABA.
-
-\subsection{swap\_s}
-
-Esta función intercambia las cadenas ubicadas en dos posiciones dadas dentro de
-una tabla de cadenas. El stack frame típico de la función se describe a
-continuación en la figura \ref{fig:stackswap}.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{docs/stack_swap_s.png}
-  \caption{Diagrama de stack para la función swap\_s} \label{fig:stackswap}
-\end{figure}
-
-\FloatBarrier
-
-Nuevamente, esta función leaf no requiere reservar espacio adicional para ABA.
-El stack es idéntico al de la función compare\_s, con 8 bytes para salvar gp y
-fp únicamente.
+auxiliares. Se reservan 8 bytes para salvar gp y fp. No es necesario reservar espacio adicional para ABA.
 
 \section{Compilación}
 
