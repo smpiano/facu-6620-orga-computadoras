@@ -71,7 +71,7 @@
   Este informe sumariza el desarrollo del trabajo práctico 1 de la materia
   Organización de Computadoras (66.20) dictada en el primer cuatrimestre de
   2013 en la Facultad de Ingeniería de la Universidad de Buenos Aires. El mismo
-  consiste enla construcción de un sistema minimalista de ordenamiento de
+  consiste en la construcción de un sistema minimalista de ordenamiento de
   archivos y el análisis de performance y perfilado del mismo.
 
 \end{abstract}
@@ -156,13 +156,7 @@ ordenamiento.
 Esta función implementa el ordenamiento de una tabla de strings a través de
 \textit{shellsort}. El método de ordenamiento fue implementado en su forma más
 sencilla a través de un algoritmo recursivo. El stack frame típico de la
-función se describe a continuación en la figura \ref{fig:stackshell}.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{docs/stack_shell_sort_s.png}
-  \caption{Diagrama de stack para la función shell\_sort\_s} \label{fig:stackshell}
-\end{figure}
+función se describe en la imagen adjunta al final del informe.
 
 \FloatBarrier
 
@@ -173,12 +167,9 @@ de dos argumentos, se reservan \(4 x 4\) bytes en concepto de ABA (respetando la
 
 utilizados por las funciones llamadas.
 
-Esta función invoca a \textit{strcasecmp} como a \textit{data_swaper}.
+Esta función invoca a strcasecmp como a data\_swaper.
 
 \FloatBarrier
-
-Esta función fue implementada como leaf, sin invocar otras funciones
-auxiliares. Se reservan 8 bytes para salvar gp y fp. No es necesario reservar espacio adicional para ABA.
 
 \section{Compilación}
 
@@ -322,69 +313,27 @@ Obtuvimos los siguientes resultados:
 
 \FloatBarrier
 
-Se observaron todos los resultados esperados. Si bien hubo una mejoría
-apreciable en el tiempo de ejecución de la implementación en assembly contra la
-de C sin optimizaciones de compilador (más del 50\% de ganancia), la
-compilación con todas las optimizaciones activadas se mantuvo relativamente
-cerca de nuestra implementación particular.
-
-Por otro lado, como era de esperarse, la implementación por \textit{shellsort}
-fue muchísimo más performante que nuestra versión optimizada manualmente,
-tomando menos del 10\% del tiempo de ejecución de nuestra versión incluso en la
-versión compilada sin optimizaciones del compilador.
+Se observaron todos los resultados esperados. Se notó una mejoría en los tiempos del código assembly respecto al código C. El análisis gráfico de los datos se puede apreciar adjunto al final de este informe.
 
 \section{Conclusiones}
 
-La implementación en assembly del trabajo práctico, incluso cuando este se
-trataba de un algoritmo relativamente simple y sencillo de desarrollar, fue
-relativamente complicado. Como se explicó en secciones anteriores, gran parte
-de la dificultad inherente en este desarrollo se encuentra en la necesidad de
-implementar, administrar y controlar la infraestructura de los llamados a
+La implementación en assembly del trabajo práctico, a pesar de que los algoritmos son relativamente simples y sencillos de desarrollar, fue
+relativamente complicado. El entorno de desarrollo en la plataforma MIPS agregó complejidad a la hora de implementar, administrar y controlar la infraestructura de los llamados a
 funciones y otros artefactos básicos de integración. Por otro lado, el código
 de ensamblador no provee muchas de las abstracciones básicas que se dan por
 sentado en los lenguajes de alto nivel, como bloques condicionales y conversión
 de tipos, lo que hizo que la implementación del algoritmo sea aún más
-dificultoso: el \textit{qué} estábamos haciendo se mezclaba con el
-\textit{cómo}. Por último, la ausencia de mecanismos de seguridad presentes en
+dificultoso. La ausencia de mecanismos de seguridad presentes en
 lenguajes compilados, como la comprobación de tipos, prototipos funcionales y
 declarativas en la asignación de nombres a variables incrementó la cantidad
-de bugs con los que nos topamos, lo que dio a lugar a más trabajo de depuración
-y testing.
-
-El costo adicional de implementación fue claro: mientras que la versión en C
-fue diseñada, implementada y testeada en 4 horas de trabajo de uno de los
-integrantes del trabajo práctico, su equivalente en assembly nos llevó a los tres
-integrantes varios días de trabajo, particularmente en el testing y depuración
-de errores. Si bien puede atribuirse esto a la falta de experiencia en
-programación a bajo nivel, el resultado sigue siendo que el desarrollo es mucho
-más costoso.
-
-Teniendo en cuenta estos factores, entendemos que es imperativo el análisis de
-costo-beneficio al decidirse por una implementación de este tipo. En nuestro
-caso particular, la diferencia en tiempo de ejecución de nuestra solución
-contra la producida por un compilador con todas las optimizaciones disponibles
-habilitadas está dentro del 10\%. ¿Justifica el enorme costo adicional esa
-ganancia?
+de bugs con los que desarrollamos, lo que dio a lugar a más trabajo de depuración y testing.
 
 Analizando el resto de los resultados concluimos que la versión implementada en
 C con \textit{shellsort}, incluso cuando no se aplicaron optimizaciones de
 compilador, era un orden de magnitud más eficiente que la versión implementada
-en assembly. Esta versión fue desarrollada, depurada y testeada por un
-integrante en el transcurso de un día, con un costo total de implementación
-mucho menor a lo necesario para la versión assembly.
+en assembly. 
 
-Como en todas las ingenierías, nuestro trabajo se basa en nuestra capacidad de
-analizar alternativas y balancear costos y beneficios. En nuestro caso
-particular, la implementación en assembly del sistema no era conveniente.
-Realizando un análisis previo fácilmente podíamos concluir que para mejorar la
-performance era mejor la alternativa de cambiar el algoritmo de ordenamiento
-antes que invertir tiempo y esfuerzo en realizar la conversión.
-
-Esta conclusión contradice la creencia generalizada de que la implementación
-más eficiente se logra descartando las abstracciones de las que disponemos. No
-siempre que se desarrolle una solución al más bajo nivel posible se llegará a
-la solución más óptima. Y aún cuando sea la óptima, hay que evaluar si el costo
-adicional incurrido justifica las ganancias obtenidas.
+Como conclusión final podemos decir que si bien la implementación de MIPS nos ofrece un mejor rendimiento de los algoritmos desarrollados, su dificil implementación hace que debamos evaluar si deseamos priorizar el rendimiento a costo de tiempo de desarrollo. En caso de necesitar una mejora crucial de rendimiento la mejor solución es la arquitectura MIPS, mientras que si deseamos un desarrollo más sencillo (y por lo tanto más breve) la mejor opción es lenguaje en C.
 
 \clearpage
 

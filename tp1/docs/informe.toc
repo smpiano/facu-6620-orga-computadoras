@@ -3,14 +3,12 @@
 \contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}
 \contentsline {section}{\numberline {2}Implementaci\IeC {\'o}n}{3}
 \contentsline {subsection}{\numberline {2.1}shell\_sort\_s}{4}
-\contentsline {subsection}{\numberline {2.2}compare\_s}{6}
-\contentsline {subsection}{\numberline {2.3}swap\_s}{7}
-\contentsline {section}{\numberline {3}Compilaci\IeC {\'o}n}{7}
-\contentsline {section}{\numberline {4}An\IeC {\'a}lisis de tiempos de ejecuci\IeC {\'o}n}{8}
-\contentsline {subsection}{\numberline {4.1}An\IeC {\'a}lisis previo}{9}
-\contentsline {subsection}{\numberline {4.2}Experimentos}{9}
-\contentsline {section}{\numberline {5}Conclusiones}{10}
-\contentsline {part}{II\hspace {1em}Ap\IeC {\'e}ndice}{12}
-\contentsline {section}{\numberline {A}Enunciado original}{12}
-\contentsline {section}{\numberline {B}README del material digital}{14}
-\contentsline {section}{\numberline {C}C\IeC {\'o}digo fuente}{16}
+\contentsline {section}{\numberline {3}Compilaci\IeC {\'o}n}{4}
+\contentsline {section}{\numberline {4}An\IeC {\'a}lisis de tiempos de ejecuci\IeC {\'o}n}{5}
+\contentsline {subsection}{\numberline {4.1}An\IeC {\'a}lisis previo}{5}
+\contentsline {subsection}{\numberline {4.2}Experimentos}{6}
+\contentsline {section}{\numberline {5}Conclusiones}{7}
+\contentsline {part}{II\hspace {1em}Ap\IeC {\'e}ndice}{8}
+\contentsline {section}{\numberline {A}Enunciado original}{8}
+\contentsline {section}{\numberline {B}README del material digital}{10}
+\contentsline {section}{\numberline {C}C\IeC {\'o}digo fuente}{12}

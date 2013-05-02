@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.5.2)  2 MAY 2013 01:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.5.2)  2 MAY 2013 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -639,8 +639,20 @@ LaTeX Info: Redefining \] on input line 2667.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen127
+) (./informe.aux
+LaTeX Info: Redefining \. on input line 6.
+LaTeX Info: Redefining \% on input line 6.
+
+
+LaTeX Warning: Label `tab:resultados' multiply defined.
+
+
+LaTeX Warning: Label `tab:resultados' multiply defined.
+
+
+LaTeX Warning: Label `tab:resultados' multiply defined.
+
 )
-No file informe.aux.
 \openout1 = `informe.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
@@ -657,7 +669,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
 LaTeX Font Info:    ... okay on input line 61.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 61.
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 61.
@@ -684,209 +696,93 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 67.
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 ) [1
 
-]
-No file informe.toc.
+] (./informe.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@toc=\write3
 \openout3 = `informe.toc'.
 
+
 [2
 
-]
+] [3
 
-LaTeX Warning: Reference `sec:enunciado' on page 3 undefined on input line 132.
-
-
-
-LaTeX Warning: Reference `sec:source' on page 3 undefined on input line 136.
-
-[3
-
-]
-
-LaTeX Warning: Reference `fig:stackshell' on page 4 undefined on input line 162
-.
-
-
-LaTeX Warning: File `docs/stack_stooge_sort_s.png' not found on input line 166.
-
-
-
-! LaTeX Error: File `docs/stack_stooge_sort_s.png' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.166 ...\textwidth]{docs/stack_stooge_sort_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Cannot determine size of graphic in docs/stack_stooge_sort_s.png
- (no BoundingBox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.166 ...\textwidth]{docs/stack_stooge_sort_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: docs/stack_stooge_sort_s.png Graphic file (type eps)
-<docs/stack_stooge_sort_s.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4]
-
-LaTeX Warning: Reference `fig:stackcompare' on page 5 undefined on input line 1
-90.
-
-[5]
-
-LaTeX Warning: File `docs/stack_compare_s.png' not found on input line 194.
-
-
-! LaTeX Error: File `docs/stack_compare_s.png' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.194 ...dth=\textwidth]{docs/stack_compare_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Cannot determine size of graphic in docs/stack_compare_s.png (no
- BoundingBox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.194 ...dth=\textwidth]{docs/stack_compare_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: docs/stack_compare_s.png Graphic file (type eps)
-<docs/stack_compare_s.png>
-
-LaTeX Warning: Reference `fig:stackswap' on page 6 undefined on input line 208.
-
-
-[6]
-
-LaTeX Warning: File `docs/stack_swap_s.png' not found on input line 212.
-
-
-! LaTeX Error: File `docs/stack_swap_s.png' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 ...[width=\textwidth]{docs/stack_swap_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Cannot determine size of graphic in docs/stack_swap_s.png (no Bo
-undingBox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 ...[width=\textwidth]{docs/stack_swap_s.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: docs/stack_swap_s.png Graphic file (type eps)
-<docs/stack_swap_s.png> [7]
-Overfull \hbox (38.50026pt too wide) in paragraph at lines 232--233
+] [4]
+Overfull \hbox (38.50026pt too wide) in paragraph at lines 184--185
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.3691pt too wide) in paragraph at lines 233--234
+Overfull \hbox (12.3691pt too wide) in paragraph at lines 185--186
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (38.50026pt too wide) in paragraph at lines 234--235
+Overfull \hbox (38.50026pt too wide) in paragraph at lines 186--187
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (38.50026pt too wide) in paragraph at lines 235--236
+Overfull \hbox (38.50026pt too wide) in paragraph at lines 187--188
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (64.63142pt too wide) in paragraph at lines 237--238
+Overfull \hbox (90.76259pt too wide) in paragraph at lines 189--190
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (77.697pt too wide) in paragraph at lines 238--239
+Overfull \hbox (77.697pt too wide) in paragraph at lines 190--191
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (25.43468pt too wide) in paragraph at lines 268--269
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (737.50891pt too wide) in paragraph at lines 217--218
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (11.04454pt too wide) in paragraph at lines 271--273
+Overfull \hbox (11.04454pt too wide) in paragraph at lines 220--222
 []\T1/cmr/m/n/10.95 El co-man-do linkea to-dos los archivos ob-je-to en un eje-
 cutable fi-nal, \T1/cmr/m/it/10.95 build/tp1\T1/cmr/m/n/10.95 . 
  []
 
-[8] [9] [10] [11]
+[5] [6] [7]
 
 Package pdfpages Warning: I cannot determine the number of pages of the
 (pdfpages)                included document, while being in DVI mode. You
 (pdfpages)                can use the option `lastpage' to give me a hint.
 
-[12
+[8
 
-] [13]
+] [9]
 
 Package pdfpages Warning: I cannot determine the number of pages of the
 (pdfpages)                included document, while being in DVI mode. You
 (pdfpages)                can use the option `lastpage' to give me a hint.
 
-[14
+[10
 
-] [15] [16
+] [11] [12
 
 ] (./informe.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 )
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7093 strings out of 495060
- 96242 string characters out of 3182054
- 160575 words of memory out of 3000000
- 10170 multiletter control sequences out of 15000+200000
+ 7084 strings out of 495060
+ 96070 string characters out of 3182054
+ 160839 words of memory out of 3000000
+ 10162 multiletter control sequences out of 15000+200000
  20016 words of font info for 52 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,10n,39p,211b,970s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,10n,39p,499b,966s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on informe.dvi (16 pages, 26536 bytes).
+Output written on informe.dvi (12 pages, 23852 bytes).
