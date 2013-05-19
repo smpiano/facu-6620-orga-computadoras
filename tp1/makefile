@@ -83,10 +83,7 @@ doc: prepare
 	pdflatex --output-directory build/doc docs/informe.tex
 
 doc-preview: doc
-	evince build/doc/informe.pdf
+	evince build/doc/informe.pdf &
 
 doc-spell:
 	aspell -t check docs/informe.tex -d es
-
-test-run: tp1
-	SUCCESS=1; for x in $$(ls test/case_* | sort -k2 -t_ -n); do ./$$x; RESULT=$$?; if [ $$RESULT -ne 0 ]; then SUCCESS=0; echo; echo; echo "***********************************"; echo "[TEST $$x] -----> BUILD NOT SUCCESSFULL "; echo "***********************************"; break; fi; done; if [ $$SUCCESS -eq 1 ]; then echo; echo; echo "*******************************"; echo "[TEST] -----> BUILD SUCCESSFULL "; echo "*******************************"; fi
