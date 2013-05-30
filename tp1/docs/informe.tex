@@ -214,20 +214,23 @@ mejor manejo de los accesos a memoria logrados por el ejecutable desarrollado en
 \subsection{Experimentos}
 
 Se realizaron pruebas utilizando los archivos provistos por la catedra sobre un entorno de ubuntu actual y sobre el emulador GXemul.
-Obtuvimos los siguientes resultados:
+Obtuvimos los siguientes resultados (tiempo usr + real)
+
+\FloatBarrier
 
 \begin{table}[h!t]
 \centering
 \begin{tabular}{ | l | r | }
   \hline
   Archivo          & Tiempo de ejecucion \\ \hline
-  Alice				 & \(13.107s\) \\
-  Beowulf     & \(20.749s\) \\
-  Cyclopedia     & \(3m 27.744s\) \\
-  EL Quijote      & \(60m 32.782s\) \\
+  Alice				 & \(3.028s\) \\
+  Beowulf     & \(3.914s\) \\
+  Cyclopedia     & \(13.352s\) \\
+  EL Quijote      & \(57.008s\) \\
   \hline
 \end{tabular}
-\caption{Tiempos en Ubuntu para BubbleSort}
+
+\caption{Tiempos para ShellSort}
 \label{tab:resultados}
 \end{table}
 
@@ -238,54 +241,19 @@ Obtuvimos los siguientes resultados:
 \begin{tabular}{ | l | r | }
   \hline
   Archivo          & Tiempo de ejecucion \\ \hline
-  Alice				 & \(0.422s\) \\
-  Beowulf     & \(0.537s\) \\
-  Cyclopedia     & \(1.920s\) \\
-  EL Quijote      & \(5.675s\) \\
+  Alice				 & \(10m18.336s\) \\
+  Beowulf     & \(16m59.469s\) \\
+  Cyclopedia     & \(133m52.200s\) \\
+  EL Quijote      & \(mas de 1 dia\) \\
   \hline
 \end{tabular}
-\caption{Tiempos en Ubuntu para ShellSort}
+\caption{Tiempos para BubbleSort}
 \label{tab:resultados}
 \end{table}
 
 \FloatBarrier
 
-\begin{table}[h!t]
-\centering
-\begin{tabular}{ | l | r | }
-  \hline
-  Archivo          & Tiempo de ejecucion \\ \hline
-  Alice				 & \(15m 17.180s\) \\
-  Beowulf     & \(27m 11.102s\) \\
-  Cyclopedia     & \(135m\) \\
-  EL Quijote      & \(time elapsed\) \\
-  \hline
-\end{tabular}
-
-\caption{Tiempos en GXemul para BubbleSort}
-\label{tab:resultados}
-\end{table}
-
-\FloatBarrier
-
-\begin{table}[h!t]
-\centering
-\begin{tabular}{ | l | r | }
-  \hline
-  Archivo          & Tiempo de ejecucion \\ \hline
-  Alice				 & \(7.281s\) \\
-  Beowulf     & \(9.500s\) \\
-  Cyclopedia     & \(29.234s\) \\
-  EL Quijote      & \(2m 8.613s\) \\
-  \hline
-\end{tabular}
-\caption{Tiempos en GXemul para BubbleSort}
-\label{tab:resultados}
-\end{table}
-
-\FloatBarrier
-
-Se observaron todos los resultados esperados. Se noto una mejoria en los tiempos del codigo assembly respecto al codigo C. El analisis grafico de los datos se puede apreciar adjunto al final de este informe.
+Como se esperaba, el codigo de shellsort anduvo muchisimo mejor que el bubble, tardando incluso menos de 1 minuto en ordenar. En cambio el bubblesort tardo excesivo tiempo en completarse, al punto que el archivo "Quijote" excedio nuestro tiempo de medicion maximo establecido (1 dia).
 
 \section{Conclusiones}
 
@@ -297,6 +265,8 @@ compilador, era un orden de magnitud mas eficiente que la version implementada
 en assembly. 
 
 Como conclusion final podemos decir que si bien la implementacion de MIPS nos ofrece un mejor rendimiento de los algoritmos desarrollados, su dificil implementacion hace que debamos evaluar si deseamos priorizar el rendimiento a costo de tiempo de desarrollo. En caso de necesitar una mejora crucial de rendimiento la mejor solucion es la arquitectura MIPS, mientras que si deseamos un desarrollo mas sencillo (y por lo tanto mas breve) la mejor opcion es lenguaje en C.
+
+Respecto a los tiempos de medicion, podemos concluir que sin ningun lugar a dudas usariamos el shellsort para ordenar, ya que gana muchisimo en rendmiento respecto del bubblesort. El bubblesort aumenta muchisimo el tiempo de ejecucion cuando aumenta el tamaño del archivo a medir, y no pasa tanto asi con el otro algoritmo. Desde ya que no podemos esperar un dia entero a que ordene un archivo, por mas simple que sea la implementacion del mismo.
 
 \clearpage
 

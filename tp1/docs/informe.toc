@@ -6,8 +6,8 @@
 \contentsline {section}{\numberline {3}Compilacion}{4}
 \contentsline {section}{\numberline {4}Analisis de tiempos de ejecucion}{5}
 \contentsline {subsection}{\numberline {4.1}Analisis previo}{5}
-\contentsline {subsection}{\numberline {4.2}Experimentos}{6}
-\contentsline {section}{\numberline {5}Conclusiones}{7}
+\contentsline {subsection}{\numberline {4.2}Experimentos}{5}
+\contentsline {section}{\numberline {5}Conclusiones}{6}
 \contentsline {part}{II\hspace {1em}Apendice}{8}
 \contentsline {section}{\numberline {A}Enunciado original}{8}
 \contentsline {section}{\numberline {B}Codigo fuente}{10}
