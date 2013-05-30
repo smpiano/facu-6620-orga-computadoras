@@ -1,0 +1,39 @@
+Alice
+real    0m3.027s
+user    0m2.304s
+sys     0m0.778s
+
+Beowulf
+real    0m3.902s
+user    0m3.044s
+sys     0m0.870s
+
+Cyclopedia
+real    0m13.352s
+user    0m10.383s
+sys     0m2.969s
+
+El Quijote
+real    1m12.797s
+user    0m46.906s
+sys     0m10.102s
+
+-----------------------------------------BUBBLE SORT -----------------------------------------
+
+Alice
+real    10m18.813s
+user    10m18.003s
+sys     0m0.633s
+
+Beowulf
+real    16m59.875s
+user    16m58.919s
+sys     0m0.730s
+
+Cyclopedia
+real    133m54.551s
+user    133m49.614s
+sys     0m2.586s
+
+El Quijote
+
