@@ -92,25 +92,9 @@
 
 \section{Introduccion}
 
-El proceso de compilacion de un programa codificado en C consiste en un
-pipeline que genera finalmente codigo objeto para una arquitectura objetivo.
-Este pipeline analiza y traduce el codigo a diferentes representaciones de los
-algoritmos contenidos en el, de manera de terminar generando codigo objeto que
-finalmente se linkea en un ejecutable valido para la arquitectura.
+El objetivo de este trabajo es comparar el rendimiento que tienen dos algoritmos de ordenamiento escritos en C. Sabemos por experiencia que un ordenamiento (Shell) es mejor que el otro (Bubble). Luego el objetivo es evaluar cómo cambia el rendimiento cuando el código está escrito directamente en codigo assembly de MIPS.
 
-Debido a que el lenguaje C es un lenguaje de alto nivel, varios de los
-conceptos propios de este lenguaje deben ser mapeados a diferentes estrategias
-que pueden ser ejecutadas en el codigo objeto, que no es mas que el conjunto de
-instrucciones que la arquitectura objetivo provee. Estos mapeos muchas veces
-pueden implementarse de diferentes maneras, cada una con sus ventajas y
-desventajas, y si bien el compilador realiza una muy buena tarea en determinar
-la mejor manera en la que traducir estos conceptos en instrucciones de bajo
-nivel, los algoritmos utilizados no garantizan que la traduccion sea de manera
-de generar el codigo objeto mas eficiente y compacto que se podria tener.
-
-La alternativa que se propone explorar en el presente trabajo es la
-implementacion directa en assembly de las rutinas del sistema que se esta
-construyendo. Esta alternativa tiene una caracteristica fundamental: al tener
+Esta alternativa tiene una caracteristica fundamental: al tener
 acceso al conjunto de instrucciones que ejecuta la arquitectura potencialmente
 se puede desarrollar una solucion optima, minimizando el acceso a memoria, la
 cantidad de instrucciones a ejecutar, etc.
@@ -135,25 +119,14 @@ espacio y prolijidad solo se incluyen los archivos relacionados con la
 implementacion en assembly de la solucion desarrollada.
 
 Cabe destacar que la solucion en assembly definitivamente no es la solucion
-optima. Existen algunas mejoras posibles para disminuir la cantidad de
-instrucciones a ejecutar o los accesos a memoria: por ejemplo, se podrian
-reordenar las instrucciones de algunos de los bloques de los procedimientos
-implementados para eliminar algunas de las instrucciones de salto
-incondicional, o se podrian utilizar de mejor manera los registros salvados
-(s0-s8) para eliminar la necesidad de restaurar desde el stack algunos de los
-registros en uso (particularmente a0, a1 y a2 en la implementacion de
-\textit{shell\_sort\_s}). Sin embargo, dado que la solucion que se presenta
-contiene el \(40\%\) de las instrucciones del equivalente implementado en C
-compilado sin optimizaciones, a los efectos del trabajo practico consideramos
-suficientemente optima la implementacion propuesta.
-
+optima. Hemos realizado algunas mejoras respecto de la version inicial como quitar el "Area Desconocida" de la memoria (ya que por error nuestro la incluimos en la primer entrega), y la implementacion de los metodos de swap y comparacion en codigo MIPS (antes usabamos las escritas en C desde MIPS).
 A continuacion enumeraremos algunas consideraciones de diseño tomadas al
 implementar cada una de las funciones involucradas en el algoritmo de
 ordenamiento.
 
 \subsection{shell\_sort\_s}
 
-Esta funcion implementa el ordenamiento de una tabla de strings a traves de
+Esta funcion implementa el ordenamiento de una tabla de strings (de palabras) a traves de
 \textit{shellsort}. El metodo de ordenamiento fue implementado en su forma mas
 sencilla a traves de un algoritmo recursivo. El stack frame tipico de la
 funcion se describe en la imagen adjunta al final del informe.
@@ -166,8 +139,6 @@ Por otro lado, dado que las funciones invocadas desde esta no poseen nunca mas
 de dos argumentos, se reservan \(4 x 4\) bytes en concepto de ABA (respetando la ABI) para ser
 
 utilizados por las funciones llamadas.
-
-Esta funcion invoca a strcasecmp como a data\_swaper.
 
 \FloatBarrier
 
@@ -290,6 +261,7 @@ Obtuvimos los siguientes resultados:
   EL Quijote      & \(time elapsed\) \\
   \hline
 \end{tabular}
+
 \caption{Tiempos en GXemul para BubbleSort}
 \label{tab:resultados}
 \end{table}
@@ -318,16 +290,7 @@ Se observaron todos los resultados esperados. Se noto una mejoria en los tiempos
 \section{Conclusiones}
 
 La implementacion en assembly del trabajo practico, a pesar de que los algoritmos son relativamente simples y sencillos de desarrollar, fue
-relativamente complicado. El entorno de desarrollo en la plataforma MIPS agrego complejidad a la hora de implementar, administrar y controlar la infraestructura de los llamados a
-funciones y otros artefactos basicos de integracion. Por otro lado, el codigo
-de ensamblador no provee muchas de las abstracciones basicas que se dan por
-sentado en los lenguajes de alto nivel, como bloques condicionales y conversion
-de tipos, lo que hizo que la implementacion del algoritmo sea aun mas
-dificultoso. La ausencia de mecanismos de seguridad presentes en
-lenguajes compilados, como la comprobacion de tipos, prototipos funcionales y
-declarativas en la asignacion de nombres a variables incremento la cantidad
-de bugs con los que desarrollamos, lo que dio a lugar a mas trabajo de depuracion y testing.
-
+mucho mas complicado y tedioso. 
 Analizando el resto de los resultados concluimos que la version implementada en
 C con \textit{shellsort}, incluso cuando no se aplicaron optimizaciones de
 compilador, era un orden de magnitud mas eficiente que la version implementada
