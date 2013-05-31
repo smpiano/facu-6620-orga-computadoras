@@ -87,3 +87,6 @@ doc-preview: doc
 
 doc-spell:
 	aspell -t check docs/informe.tex -d es
+
+export: doc
+	tar -czvf build/entrega_tp1.tar.gz makefile source data -C build/doc/ informe.pdf README.pdf
